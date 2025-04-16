@@ -62,82 +62,25 @@ namespace Grate.GUI
                     Plugin.configFile.SettingChanged += SettingsChanged;
                     List<GrateModule> TooAddmodules = new List<GrateModule>()
                     {
-                        // Locomotion
-                        gameObject.AddComponent<Airplane>(),
-                        gameObject.AddComponent<Helicopter>(),
-                        gameObject.AddComponent<Bubble>(),
                         gameObject.AddComponent<Fly>(),
-                        gameObject.AddComponent<GrapplingHooks>(),
                         gameObject.AddComponent<Climb>(),
                         gameObject.AddComponent<DoubleJump>(),
                         gameObject.AddComponent<Platforms>(),
-                        gameObject.AddComponent<Frozone>(),
-                        gameObject.AddComponent<NailGun>(),
-                        gameObject.AddComponent<Rockets>(),
                         gameObject.AddComponent<SpeedBoost>(),
-                        gameObject.AddComponent<Swim>(),
-                        gameObject.AddComponent<Wallrun>(),
-                        gameObject.AddComponent<Zipline>(),
 
                         //// Physics
-                        gameObject.AddComponent<LowGravity>(),
                         gameObject.AddComponent<NoClip>(),
-                        gameObject.AddComponent<NoSlip>(),
-                        gameObject.AddComponent<Potions>(),
-                        gameObject.AddComponent<SlipperyHands>(),
                         gameObject.AddComponent<DisableWind>(),
 
-                        //// Teleportation
-                        gameObject.AddComponent<Checkpoint>(),
-                        gameObject.AddComponent<Portal>(),
                         gameObject.AddComponent<Pearl>(),
                         gameObject.AddComponent<Teleport>(),
                 
                         //// Multiplayer
-                        gameObject.AddComponent<Boxing>(),
-                        gameObject.AddComponent<Piggyback>(),
                         gameObject.AddComponent<Telekinesis>(),
                         gameObject.AddComponent<Throw>(),
-                        gameObject.AddComponent<Fireflies>(),
                         gameObject.AddComponent<ESP>(),
-                        gameObject.AddComponent<RatSword>(),
-                        gameObject.AddComponent<Kamehameha>(),
-
-                        //// Misc
-                        gameObject.AddComponent<ReturnToVS>(),
-                        gameObject.AddComponent<Lobby>(),
-
+                        gameObject.AddComponent<RatSword>()
                     };
-                    CatMeow meow = gameObject.AddComponent<CatMeow>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "FBE3EE50747CB892")
-                    {
-                        modules.Add(meow);
-                    }
-                    StoneBroke sb = gameObject.AddComponent<StoneBroke>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "CA8FDFF42B7A1836")
-                    {
-                        modules.Add(sb);
-                    }
-                    BagHammer bs = gameObject.AddComponent<BagHammer>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "9ABD0C174289F58E")
-                    {
-                        modules.Add(bs);
-                    }
-                    Grazing g = gameObject.AddComponent<Grazing>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "42D7D32651E93866")
-                    {
-                        modules.Add(g);
-                    }
-                    Cheese ch = gameObject.AddComponent<Cheese>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "B1B20DEEEDB71C63")
-                    {
-                        modules.Add(ch);
-                    }
-                    GoudabudaHat goudabudaHat = gameObject.AddComponent<GoudabudaHat>();
-                    if (NetworkSystem.Instance.LocalPlayer.UserId == "A48744B93D9A3596")
-                    {
-                        modules.Add(goudabudaHat);
-                    }
                     modules.AddRange(TooAddmodules);
                     ReloadConfiguration();
                 }
@@ -289,30 +232,9 @@ namespace Grate.GUI
 
         IEnumerator VerCheck()
         {
-            using (UnityWebRequest request = UnityWebRequest.Get("https://raw.githubusercontent.com/The-Graze/Grate/master/ver.txt"))
-            {
-                yield return request.SendWebRequest();
-                if (request.result == UnityWebRequest.Result.Success)
-                {
-                    string fileContents = request.downloadHandler.text;
-
-                    Version checkedV = new Version(fileContents);
-                    Version localv = new Version(PluginInfo.Version);
-
-                    if (checkedV > localv)
-                    {
-                        this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().horizontalOverflow = HorizontalWrapMode.Overflow;
-                        this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().verticalOverflow = VerticalWrapMode.Overflow;
-                        this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().text =
-                        $"!!Update Needed!! \n GoTo: \n https://graze.cc/grate";
-                    }
-                    else
-                    {
-                        this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().text =
-                        $"{PluginInfo.Name} {PluginInfo.Version}";
-                    }
-                }
-            }
+            this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().text =
+            $"Ghost Menu";
+            yield return "wawa";
         }
 
         void BuildMenu()
