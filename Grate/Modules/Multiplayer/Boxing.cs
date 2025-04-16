@@ -16,13 +16,11 @@ namespace Grate.Modules.Multiplayer
     public class BoxingGlove : MonoBehaviour
     {
         public VRRig rig;
-        public AudioSource punchSound;
         public GorillaVelocityEstimator velocity;
         public static int uuid;
 
         void Start()
         {
-            punchSound = GetComponent<AudioSource>();
             velocity = this.gameObject.AddComponent<GorillaVelocityEstimator>();
         }
     }
@@ -37,10 +35,8 @@ namespace Grate.Modules.Multiplayer
 
         private float lastPunch;
 
-        protected override void OnEnable()
+        protected override void Start()
         {
-            if (!MenuController.Instance.Built) return;
-            base.OnEnable();
             try
             {
                 ReloadConfiguration();
@@ -58,41 +54,16 @@ namespace Grate.Modules.Multiplayer
                 var observer = capsule.AddComponent<CollisionObserver>();
                 observer.OnTriggerEntered += (obj, collider) =>
                 {
-                    if (collider.GetComponentInParent<BoxingGlove>() is BoxingGlove glove)
+                    if (collider.GetComponent<BoxingGlove>() is BoxingGlove glove)
                     {
                         DoPunch(glove);
                     }
                 };
-                NetworkPropertyHandler.Instance.OnPlayerJoined += OnPlayerJoined;
-                CreateGloves();
             }
             catch (Exception e)
             {
                 Logging.Exception(e);
             }
-        }
-        protected override void OnDisable()
-        {
-            foreach (var g in Resources.FindObjectsOfTypeAll<BoxingGlove>())
-            {
-                if (gloves.Contains(g))
-                {
-                    gloves.Remove(g);
-                }
-                g.gameObject.Obliterate();
-            }
-            base.OnDisable();
-        }
-
-        protected override void Cleanup()
-        {
-            punchCollider?.gameObject?.Obliterate();
-            glovedRigs.Clear();
-            if (NetworkPropertyHandler.Instance is NetworkPropertyHandler nph)
-            {
-                nph.OnPlayerJoined -= OnPlayerJoined;
-            }
-            StartCoroutine(DelGloves());
         }
         public IEnumerator DelGloves()
         {
@@ -108,58 +79,6 @@ namespace Grate.Modules.Multiplayer
             yield return new WaitForEndOfFrame();
         }
 
-        private void OnPlayerJoined(NetworkPlayer player)
-        {
-            GiveGlovesTo(player.Rig());
-        }
-
-        void CreateGloves()
-        {
-
-            foreach (var rig in GorillaParent.instance.vrrigs)
-            {
-                try
-                {
-                    if (rig != GorillaTagger.Instance.offlineVRRig && rig != GorillaTagger.Instance.myVRRig && !glovedRigs.Contains(rig) && rig.OwningNetPlayer != GorillaTagger.Instance.myVRRig.Owner)
-                    {
-                        GiveGlovesTo(rig);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Logging.Exception(e);
-                }
-            }
-
-        }
-
-        void GiveGlovesTo(VRRig rig)
-        {
-            glovedRigs.Add(rig);
-            var lefty = CreateGlove(rig.leftHandTransform, true);
-            lefty.rig = rig;
-            gloves.Add(lefty);
-            var righty = CreateGlove(rig.rightHandTransform, false);
-            righty.rig = rig;
-            gloves.Add(righty);
-            Logging.Debug("Gave gloves to", rig.OwningNetPlayer.NickName);
-
-        }
-
-        private BoxingGlove CreateGlove(Transform parent, bool isLeft = true)
-        {
-            var glove = Instantiate(Plugin.assetBundle.LoadAsset<GameObject>("Boxing Glove"));
-            string side = isLeft ? "Left" : "Right";
-            glove.name = $"Boxing Glove ({side})";
-            glove.transform.SetParent(parent, false);
-            float x = isLeft ? 1 : -1;
-            glove.transform.localScale = new Vector3(x, 1, 1);
-            glove.layer = GrateInteractor.InteractionLayer;
-            foreach (Transform child in glove.transform)
-                child.gameObject.layer = GrateInteractor.InteractionLayer;
-            return glove.AddComponent<BoxingGlove>();
-        }
-
         void FixedUpdate()
         {
             //if (Time.frameCount % 300 == 0) CreateGloves();
@@ -171,26 +90,12 @@ namespace Grate.Modules.Multiplayer
             Vector3 force = glove.velocity.linearVelocity;
             if (force.magnitude < .5f * Player.Instance.scale) return;
             force.Normalize();
-            force *= forceMultiplier * Buffness();
+            force *= forceMultiplier;
             Player.Instance.bodyCollider.attachedRigidbody.velocity += force;
             lastPunch = Time.time;
             GestureTracker.Instance.HapticPulse(false);
             GestureTracker.Instance.HapticPulse(true);
-            glove.punchSound.pitch = UnityEngine.Random.Range(.8f, 1.2f);
-            glove.punchSound.Play();
 
-        }
-
-        public int Buffness()
-        {
-            if (BuffMonke.Value)
-            {
-                return 100;
-            }
-            else
-            {
-                return 1;
-            }
         }
 
         protected override void ReloadConfiguration()
@@ -199,7 +104,6 @@ namespace Grate.Modules.Multiplayer
         }
 
         public static ConfigEntry<int> PunchForce;
-        public static ConfigEntry<bool> BuffMonke;
         public static void BindConfigEntries()
         {
             Logging.Debug("Binding", DisplayName, "to config");
@@ -209,13 +113,6 @@ namespace Grate.Modules.Multiplayer
                 defaultValue: 5,
                 description: "How much force will be applied to you when you get punched"
             );
-
-            BuffMonke = Plugin.configFile.Bind(
-                section: DisplayName,
-                key: "Buff monke",
-                defaultValue: false,
-                description: "WEEEEEEEEEEEE"
-);
         }
 
         public override string GetDisplayName()
@@ -226,6 +123,10 @@ namespace Grate.Modules.Multiplayer
         public override string Tutorial()
         {
             return "Effect: Other players can punch you around.";
+        }
+
+        protected override void Cleanup()
+        {
         }
     }
 }

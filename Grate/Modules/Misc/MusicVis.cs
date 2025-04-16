@@ -89,7 +89,7 @@ namespace Grate.Modules.Misc
             {
                 GameObject wawa = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 wawa.GetComponent<Collider>().Obliterate();
-                wawa.GetComponent<Renderer>().material = MenuController.Instance.grate[1];
+                wawa.GetComponent<Renderer>().material = MenuController.Instance.ghost[1];
                 wawa.transform.SetParent(anc, false);
                 wawa.transform.localScale = new Vector3(0.11612f, 0.11612f, 0.11612f);
                 VisParts.Add(wawa.transform);

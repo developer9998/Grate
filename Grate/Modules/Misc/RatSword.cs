@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using NetworkPlayer = NetPlayer;
+using Grate.Modules.Multiplayer;
 
 namespace Grate.Modules.Misc
 {
@@ -28,6 +29,9 @@ namespace Grate.Modules.Misc
                 Sword.transform.localPosition = new Vector3(-0.4782f, 0.1f, 0.4f);
                 Sword.transform.localRotation = Quaternion.Euler(9, 0, 0);
                 Sword.transform.localScale /= 2;
+                Sword.layer = GrateInteractor.InteractionLayer;
+                Sword.AddComponent<BoxingGlove>();
+                Sword.AddComponent<MeshCollider>().isTrigger = true;
                 Sword.SetActive(false);
             }
             try
@@ -91,8 +95,7 @@ namespace Grate.Modules.Misc
 
         public override string Tutorial()
         {
-            return "I met a lil' kid in canyons who wanted kyle to make him a sword.\n" +
-                "[Grip] to wield your weapon, rat kid.";
+            return "A ghostly rat sword!";
         }
 
         class NetSword : MonoBehaviour

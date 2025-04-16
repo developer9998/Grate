@@ -42,9 +42,9 @@ namespace Grate.GUI
         public static ConfigEntry<string> SummonInput;
         public static ConfigEntry<string> SummonInputHand;
         public static ConfigEntry<string> Theme;
-        public static ConfigEntry<bool> Festive;
+        public static ConfigEntry<int> GhostLvl;
 
-        public Material[] grate, bark, HolloPurp;
+        public Material[] ghost, blood;
 
         bool docked;
 
@@ -60,34 +60,51 @@ namespace Grate.GUI
                     this.throwOnDetach = true;
                     gameObject.AddComponent<PositionValidator>();
                     Plugin.configFile.SettingChanged += SettingsChanged;
-                    List<GrateModule> TooAddmodules = new List<GrateModule>()
+                    List<GrateModule> TooAddmodules = new List<GrateModule>();
+
+                    if (GhostLvl.Value >= 0)
                     {
-                        gameObject.AddComponent<Fly>(),
-                        gameObject.AddComponent<Climb>(),
-                        gameObject.AddComponent<DoubleJump>(),
-                        gameObject.AddComponent<Platforms>(),
-                        gameObject.AddComponent<SpeedBoost>(),
-
-                        //// Physics
-                        gameObject.AddComponent<NoClip>(),
-                        gameObject.AddComponent<DisableWind>(),
-
-                        gameObject.AddComponent<Pearl>(),
-                        gameObject.AddComponent<Teleport>(),
-                
-                        //// Multiplayer
-                        gameObject.AddComponent<Telekinesis>(),
-                        gameObject.AddComponent<Throw>(),
-                        gameObject.AddComponent<ESP>(),
-                        gameObject.AddComponent<RatSword>()
-                    };
+                        TooAddmodules.Add(gameObject.AddComponent<JumpScare>());
+                    }
+                    if (GhostLvl.Value >= 1)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<DisableWind>());
+                        TooAddmodules.Add(gameObject.AddComponent<Fly>());
+                    }
+                    if (GhostLvl.Value >= 2)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<Platforms>());
+                        TooAddmodules.Add(gameObject.AddComponent<NoClip>());
+                        TooAddmodules.Add(gameObject.AddComponent<SpeedBoost>());
+                    }
+                    if (GhostLvl.Value >= 3)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<Climb>());
+                        TooAddmodules.Add(gameObject.AddComponent<DoubleJump>());
+                        TooAddmodules.Add(gameObject.AddComponent<Teleport>());
+                    }
+                    if (GhostLvl.Value >= 4)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<ESP>());
+                    }
+                    if (GhostLvl.Value >= 5)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<Telekinesis>());
+                        TooAddmodules.Add(gameObject.AddComponent<Throw>());
+                        TooAddmodules.Add(gameObject.AddComponent<RatSword>());
+                    }
+                    if (GhostLvl.Value >= 10)
+                    {
+                        TooAddmodules.Add(gameObject.AddComponent<BANGUN>());
+                    }
+                    gameObject.AddComponent<Boxing>();
                     modules.AddRange(TooAddmodules);
                     ReloadConfiguration();
                 }
                 catch (Exception e) { Logging.Exception(e); }
             }
         }
-        private void Start() // sigma sigma sigma s
+        private void Start()
         {
             this.Summon();
             base.transform.SetParent(null);
@@ -102,46 +119,30 @@ namespace Grate.GUI
         private void ThemeChanged()
         {
             Debug.Log("Theme value: " + Theme.Value);
-            if (grate == null)
+            if (ghost == null)
             {
-                grate = new Material[]
+                ghost = new Material[]
                 {
                     Plugin.assetBundle.LoadAsset<Material>("Zipline Rope Material"),
                     Plugin.assetBundle.LoadAsset<Material>("Metal Material")
                 };
-                bark = new Material[]
+                blood = new Material[]
                 {
                     Plugin.assetBundle.LoadAsset<Material>("m_Menu Outer"),
                     Plugin.assetBundle.LoadAsset<Material>("m_Menu Inner")
 
                 };
-                Material mat = Plugin.assetBundle.LoadAsset<Material>("m_TK Sparkles");
-                HolloPurp = new Material[]
-                {
-                    mat,
-                    new Material(mat)
-                };
             }
             string ThemeName = Theme.Value.ToLower();
-            if (ThemeName == "grate")
+            if (ThemeName == "ghost")
             {
-                gameObject.GetComponent<MeshRenderer>().materials = grate;
+                gameObject.GetComponent<MeshRenderer>().materials = ghost;
             }
-            if (ThemeName == "bark")
+            if (ThemeName == "blood")
             {
-                gameObject.GetComponent<MeshRenderer>().materials = bark;
+                gameObject.GetComponent<MeshRenderer>().materials = blood;
             }
-            if (ThemeName == "holowpurple")
-            {
-                gameObject.GetComponent<MeshRenderer>().materials = HolloPurp;
-            }
-
-            if (ThemeName == "oldgrate")
-            {
-                gameObject.GetComponent<MeshRenderer>().materials[0].color = new Color(0.17f, 0.17f, 0.17f); gameObject.GetComponent<MeshRenderer>().materials[0].mainTexture = null;
-                gameObject.GetComponent<MeshRenderer>().materials[1].color = new Color(0.2f, 0.2f, 0.2f); gameObject.GetComponent<MeshRenderer>().materials[1].mainTexture = null;
-            }
-            transform.GetChild(5).gameObject.SetActive(Festive.Value);
+            transform.GetChild(5).gameObject.SetActive(false);
         }
 
         private void ReloadConfiguration()
@@ -165,7 +166,6 @@ namespace Grate.GUI
                 if (SummonTracker != null)
                     SummonTracker.OnPressed += Summon;
             }
-            ThemeChanged();
         }
 
         void SettingsChanged(object sender, SettingChangedEventArgs e)
@@ -174,7 +174,7 @@ namespace Grate.GUI
             {
                 ReloadConfiguration();
             }
-            if (e.ChangedSetting == Theme || e.ChangedSetting == Festive)
+            if (e.ChangedSetting == Theme)
             {
                 ThemeChanged();
             }
@@ -233,7 +233,7 @@ namespace Grate.GUI
         IEnumerator VerCheck()
         {
             this.gameObject.transform.Find("Version Canvas").GetComponentInChildren<Text>().text =
-            $"Ghost Menu";
+            $"Ghost Menu\n Ghost LVL: {GhostLvl.Value}";
             yield return "wawa";
         }
 
@@ -494,25 +494,16 @@ namespace Grate.GUI
                     "right",
                     handDesc
                 );
-
                 ConfigDescription ThemeDesc = new ConfigDescription(
-                   "Which Theme Should Grate Use?",
-                   new AcceptableValueList<string>("grate","bark","OldGrate","HolowPurple")
+                   "Which Theme Should Ghost Menu Use?",
+                   new AcceptableValueList<string>("ghost","blood")
                );
                 Theme = Plugin.configFile.Bind("General",
                     "theme",
-                    "Grate",
+                    "ghost",
                     ThemeDesc
                 );
-                ConfigDescription FestiveDesc = new ConfigDescription(
-                    "Should the christmas lights be on?",
-                    new AcceptableValueList<bool>(true, false)
-                );
-                Festive = Plugin.configFile.Bind("General",
-                    "festive",
-                    false,
-                    FestiveDesc
-                );
+                GhostLvl = Plugin.configFile.Bind("General", "What Ghost LVl are you?", 0);
             }
             catch (Exception e) { Logging.Exception(e); }
         }
