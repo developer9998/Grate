@@ -1,8 +1,8 @@
-﻿using GorillaLocomotion;
+﻿using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Gestures;
 using Grate.GUI;
 using UnityEngine;
-using BepInEx.Configuration;
 
 namespace Grate.Modules.Movement
 {
@@ -36,7 +36,7 @@ namespace Grate.Modules.Movement
         {
             if (direction > angle || direction < -angle)
             {
-               return false;
+                return false;
             }
             else
             {
@@ -50,7 +50,8 @@ namespace Grate.Modules.Movement
             {
                 return direction < 0 ? -1 : 1;
             }
-            else {
+            else
+            {
                 return direction * 2;
             }
         }
@@ -112,9 +113,9 @@ namespace Grate.Modules.Movement
 
         public override string Tutorial()
         {
-            return "- WARNING: CAN CAUSE MOTION SICKNESS EASILY \n"+
-            " -To spin, do a T-pose (spread your arms out like wings on a Helicopter). \n"+
-                "- Look up to fly up.\n"+ 
+            return "- WARNING: CAN CAUSE MOTION SICKNESS EASILY \n" +
+            " -To spin, do a T-pose (spread your arms out like wings on a Helicopter). \n" +
+                "- Look up to fly up.\n" +
                 "- Look down to fly down.";
         }
 

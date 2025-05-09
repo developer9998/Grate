@@ -1,18 +1,14 @@
 ﻿// Stolen from https://github.com/Graicc/PracticeMod/blob/617a9f758077ea06cf0407a776580d6b021bcc35/PracticeMod/Patches/PlayerTeleportPatch.cs#L61
 // Used without permission, but what are you gonna do, sue me?
 
-using GorillaLocomotion;
-using HarmonyLib;
-using System.Reflection;
-using UnityEngine;
-using Grate.Modules.Physics;
 using System;
 using System.Threading.Tasks;
+using GorillaLocomotion;
+using Grate.Modules.Physics;
 using Grate.Tools;
-using Valve.VR.InteractionSystem;
+using HarmonyLib;
+using UnityEngine;
 using Player = GorillaLocomotion.GTPlayer;
-using Photon.Voice;
-using UnityEngine.UIElements;
 
 namespace Grate.Patches
 {
@@ -24,7 +20,7 @@ namespace Grate.Patches
             return !Plugin.WaWa_graze_dot_cc;
         }
     }
-    
+
     [HarmonyPatch(typeof(Player))]
     [HarmonyPatch("LateUpdate", MethodType.Normal)]
     internal class TeleportPatch
@@ -41,32 +37,32 @@ namespace Grate.Patches
             {
                 if (_isTeleporting)
                 {
-                    GTPlayer.Instance.locomotionEnabledLayers = NoClip.layerMask;
-                    GTPlayer.Instance.bodyCollider.isTrigger = true;
-                    GTPlayer.Instance.headCollider.isTrigger = true;
+                    Player.Instance.locomotionEnabledLayers = NoClip.layerMask;
+                    Player.Instance.bodyCollider.isTrigger = true;
+                    Player.Instance.headCollider.isTrigger = true;
                     var playerRigidBody = __instance.GetComponent<Rigidbody>();
                     if (playerRigidBody != null)
                     {
                         Vector3 correctedPosition = _teleportPosition - __instance.bodyCollider.transform.position + __instance.transform.position;
 
-                        if(_killVelocity)
+                        if (_killVelocity)
                             playerRigidBody.velocity = Vector3.zero;
 
                         __instance.transform.position = correctedPosition;
                         if (_rotate)
                             __instance.transform.rotation = Quaternion.Euler(0, _teleportRotation, 0);
-                        
-                        
+
+
                         Traverse.Create(__instance).Field("lastLeftHandPosition").SetValue(__instance.leftHandFollower.transform.position);
                         Traverse.Create(__instance).Field("lastRightHandPosition").SetValue(__instance.rightHandFollower.transform.position);
 
                         Traverse.Create(__instance).Field("lastPosition").SetValue(correctedPosition);
                         Traverse.Create(__instance).Field("lastOpenHeadPosition").SetValue(__instance.headCollider.transform.position);
-                        
+
                         GorillaTagger.Instance.offlineVRRig.transform.position = correctedPosition;
                     }
-                    GTPlayer.Instance.headCollider.isTrigger = NoClip.Instance.baseHeadIsTrigger;
-                    GTPlayer.Instance.bodyCollider.isTrigger = NoClip.Instance.baseBodyIsTrigger;
+                    Player.Instance.headCollider.isTrigger = NoClip.Instance.baseHeadIsTrigger;
+                    Player.Instance.bodyCollider.isTrigger = NoClip.Instance.baseBodyIsTrigger;
                     Task.Delay(250).ContinueWith(delegate { GTPlayer.Instance.locomotionEnabledLayers = NoClip.Instance.baseMask; });
                     _isTeleporting = false;
                     return true;

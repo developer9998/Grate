@@ -1,15 +1,15 @@
-﻿using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using GorillaLocomotion.Climbing;
+using GorillaLocomotion.Gameplay;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using GorillaLocomotion.Gameplay;
-using GorillaLocomotion.Climbing;
+using Grate.Tools;
 using HarmonyLib;
-using BepInEx.Configuration;
+using UnityEngine;
 using UnityEngine.XR;
-using GorillaLocomotion;
 
 namespace Grate.Modules.Movement
 {
@@ -79,7 +79,7 @@ namespace Grate.Modules.Movement
 
         void HideLauncher()
         {
-            launcher.GetComponent<MeshRenderer>().enabled = false;;
+            launcher.GetComponent<MeshRenderer>().enabled = false; ;
             gunStartHook.SetActive(false);
             gunEndHook.SetActive(false);
             //foreach (var system in smokeSystems)
@@ -88,9 +88,9 @@ namespace Grate.Modules.Movement
 
         void Fire(InputTracker _)
         {
-            if(!launcher.activeSelf) return;
+            if (!launcher.activeSelf) return;
             audioFire.Play();
-            
+
             GestureTracker.Instance.HapticPulse(hand == XRNode.LeftHand, 1, .25f);
             foreach (var system in smokeSystems)
             {
@@ -111,7 +111,7 @@ namespace Grate.Modules.Movement
         int nextZipline;
         void ResetHooks()
         {
-            if(!launcher.activeSelf) return;
+            if (!launcher.activeSelf) return;
             GestureTracker.Instance.HapticPulse(hand == XRNode.LeftHand);
             gunStartHook.SetActive(true);
             gunEndHook.SetActive(true);
@@ -280,9 +280,9 @@ namespace Grate.Modules.Movement
         {
             settings.gravityMulti = GravityMultiplier.Value / 5f;
             ResizeArray(MaxZiplines.Value);
-            
+
             UnsubscribeFromEvents();
-            
+
             hand = LauncherHand.Value == "left"
                 ? XRNode.LeftHand : XRNode.RightHand;
 

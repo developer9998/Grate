@@ -1,11 +1,4 @@
-﻿using HarmonyLib;
-using System;
-using Grate.Tools;
-using System.Diagnostics;
-using Debug = UnityEngine.Debug;
-using Object = UnityEngine.Object;
-
-namespace Grate.Patches
+﻿namespace Grate.Patches
 {
     public static class DebugPatches
     {
@@ -20,7 +13,7 @@ namespace Grate.Patches
 
         public static bool Ignore(string s)
         {
-            foreach(var i in  ignoreables)
+            foreach (var i in ignoreables)
             {
                 if (s.Contains(i)) return true;
             }

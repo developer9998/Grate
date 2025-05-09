@@ -1,6 +1,6 @@
-﻿using Grate.Modules.Physics;
+﻿using GorillaNetworking;
+using Grate.Modules.Physics;
 using Grate.Tools;
-using GorillaNetworking;
 using HarmonyLib;
 
 namespace Grate.Patches

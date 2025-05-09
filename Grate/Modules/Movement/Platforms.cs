@@ -1,20 +1,15 @@
-using GorillaLocomotion;
-using Grate.Tools;
 using System;
-using UnityEngine;
-using UnityEngine.XR;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using GorillaLocomotion.Climbing;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using BepInEx.Configuration;
-using GorillaLocomotion.Climbing;
-using HarmonyLib;
 using Grate.Modules.Physics;
 using Grate.Networking;
-using Fusion;
-using UnityEngine.Animations.Rigging;
-using UnityEngine.UIElements;
-using System.Net.NetworkInformation;
+using Grate.Tools;
+using UnityEngine;
+using UnityEngine.XR;
 
 namespace Grate.Modules.Movement
 {
@@ -40,7 +35,7 @@ namespace Grate.Modules.Movement
                 this.name = "Grate Platform " + (isLeft ? "Left" : "Right");
                 this.Scale = 1;
                 foreach (Transform child in this.transform)
-                { 
+                {
                     child.gameObject.AddComponent<GorillaSurfaceOverride>().overrideIndex = 110;
                     var cloud = this.transform.Find("cloud");
                     cloudMaterial = cloud.GetComponent<Renderer>().material;

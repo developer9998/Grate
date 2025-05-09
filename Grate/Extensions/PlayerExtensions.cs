@@ -1,8 +1,8 @@
-﻿using Grate.Modules;
+﻿using System.Collections.Generic;
 using GorillaLocomotion;
+using Grate.Modules;
 using HarmonyLib;
 using Photon.Pun;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grate.Extensions
@@ -27,14 +27,14 @@ namespace Grate.Extensions
 
         public static bool HasProperty(this VRRig rig, string key)
         {
-            if(rig.OwningNetPlayer is NetPlayer player)
+            if (rig.OwningNetPlayer is NetPlayer player)
                 return player.HasProperty(key);
             return false;
         }
 
         public static bool ModuleEnabled(this VRRig rig, string mod)
         {
-            if(rig?.OwningNetPlayer is NetPlayer player)
+            if (rig?.OwningNetPlayer is NetPlayer player)
                 return player.ModuleEnabled(mod);
             return false;
         }

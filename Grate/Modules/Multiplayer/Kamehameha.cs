@@ -1,17 +1,15 @@
-﻿using GorillaLocomotion;
-using Grate.Extensions;
-using Grate.GUI;
-using Grate.Gestures;
-using Grate.Tools;
-using System;
+﻿using System;
 using System.Collections;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.Extensions;
+using Grate.Gestures;
+using Grate.GUI;
+using Grate.Modules.Physics;
+using Grate.Networking;
+using Grate.Tools;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using BepInEx.Configuration;
-using System.Collections.Generic;
-using Grate.Networking;
-using Grate.Modules.Movement;
-using Grate.Modules.Physics;
 namespace Grate.Modules.Multiplayer
 {
     public class Kamehameha : GrateModule
@@ -40,7 +38,7 @@ namespace Grate.Modules.Multiplayer
             orb = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
             orb.localScale = new Vector3(maxOrbSize, maxOrbSize, maxOrbSize);
             orb.gameObject.GetComponent<Collider>().isTrigger = true;
-            orbBody = orb.gameObject.AddComponent<Rigidbody>();
+            orbBody = orb.gameObject.GetOrAddComponent<Rigidbody>();
             orbBody.isKinematic = true;
             orbBody.useGravity = false;
             orb.gameObject.layer = GrateInteractor.InteractionLayer;
@@ -164,7 +162,7 @@ namespace Grate.Modules.Multiplayer
             {
                 state = "FIRE!";
             }
-            if(!isCharging && !isFiring)
+            if (!isCharging && !isFiring)
             {
                 state = "None";
             }
@@ -215,7 +213,7 @@ namespace Grate.Modules.Multiplayer
             if (c_Networked.Value == false)
             {
                 foreach (NetworkedKaemeManager manager in Resources.FindObjectsOfTypeAll<NetworkedKaemeManager>())
-                { 
+                {
                     Destroy(manager);
                 }
             }
@@ -225,7 +223,7 @@ namespace Grate.Modules.Multiplayer
         protected override void Cleanup()
         {
             GestureTracker.Instance.OnKamehameha -= OnKamehameha;
-            if(orb != null) 
+            if (orb != null)
             {
                 orb?.gameObject.SetActive(false);
                 bananaLine?.gameObject.SetActive(false);

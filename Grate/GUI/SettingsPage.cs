@@ -1,17 +1,17 @@
-﻿using Grate.Extensions;
-using UnityEngine;
-using System;
-using UnityEngine.UI;
+﻿using System;
 using System.Collections.Generic;
-using Grate;
-using Grate.Tools;
-using Grate.Modules;
 using System.Reflection;
-using static Grate.Extensions.ConfigExtensions;
 using BepInEx.Configuration;
+using Grate;
+using Grate.Extensions;
 using Grate.Gestures;
-using Grate.Interaction;
 using Grate.GUI;
+using Grate.Interaction;
+using Grate.Modules;
+using Grate.Tools;
+using UnityEngine;
+using UnityEngine.UI;
+using static Grate.Extensions.ConfigExtensions;
 
 public class SettingsPage : MonoBehaviour
 {
@@ -116,10 +116,10 @@ public class SettingsPage : MonoBehaviour
     public void UpdateText()
     {
         if (entry is null) return;
-        MenuController.Instance.helpText.text = 
+        MenuController.Instance.helpText.text =
             $"{modSelector.Selected} > {configSelector.Selected}\n" +
             "-----------------------------------\n" +
-            entry.Description.Description + 
+            entry.Description.Description +
             $"\n\nDefault: {entry.DefaultValue}";
     }
 }

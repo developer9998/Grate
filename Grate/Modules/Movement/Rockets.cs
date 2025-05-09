@@ -1,12 +1,12 @@
 ﻿using System;
-using UnityEngine;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Tools;
-using Grate.Extensions;
-using GorillaLocomotion;
-using BepInEx.Configuration;
 using Grate.Interaction;
+using Grate.Tools;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Grate.Modules.Movement
@@ -156,7 +156,7 @@ namespace Grate.Modules.Movement
             this.isLeft = isLeft;
             gt = GestureTracker.Instance;
 
-            if(isLeft)
+            if (isLeft)
                 gt.leftGrip.OnPressed += Attach;
             else
                 gt.rightGrip.OnPressed += Attach;
@@ -188,7 +188,7 @@ namespace Grate.Modules.Movement
                 transform.Rotate(Random.insideUnitSphere);
             }
             this.exhaustSound.volume = Mathf.Lerp(.5f, 0, Vector3.Distance(
-                player.headCollider.transform.position, 
+                player.headCollider.transform.position,
                 transform.position
             ) / 20f) * volume;
         }

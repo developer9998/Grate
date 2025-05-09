@@ -1,10 +1,9 @@
-﻿using HarmonyLib;
+﻿using System;
 using GorillaLocomotion;
-using System;
-using Grate.Tools;
 using Grate.Modules.Physics;
+using Grate.Tools;
+using HarmonyLib;
 using UnityEngine;
-using Grate.Gestures;
 
 namespace Grate.Patches
 {
@@ -23,8 +22,8 @@ namespace Grate.Patches
             {
 
             }
-                Camera.main.farClipPlane = 8500;
-                Camera.main.clearFlags = CameraClearFlags.Skybox;
+            Camera.main.farClipPlane = 8500;
+            Camera.main.clearFlags = CameraClearFlags.Skybox;
         }
     }
 
@@ -51,7 +50,7 @@ namespace Grate.Patches
     {
         private static void Postfix(VRRig __instance, ref AudioSource ___voiceAudio)
         {
-            if(!Plugin.WaWa_graze_dot_cc || !___voiceAudio) return;
+            if (!Plugin.WaWa_graze_dot_cc || !___voiceAudio) return;
             try
             {
                 ___voiceAudio.pitch = Mathf.Clamp(___voiceAudio.pitch, .8f, 1.2f);

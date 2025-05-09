@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
+using GorillaLocomotion;
 using Grate.GUI;
+using Grate.Modules.Movement;
+using Grate.Modules.Multiplayer;
 using Grate.Patches;
 using Grate.Tools;
-using GorillaLocomotion;
 using UnityEngine;
-using Grate.Modules.Multiplayer;
-using Grate.Modules.Movement;
-using BepInEx.Configuration;
-using Grate.Extensions;
 
 namespace Grate.Modules.Physics
 {
@@ -72,7 +70,7 @@ namespace Grate.Modules.Physics
             catch (Exception e) { Logging.Exception(e); }
         }
 
-        protected override void Cleanup() 
+        protected override void Cleanup()
         {
             if (!FirstTimeworkaround)
             {

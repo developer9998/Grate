@@ -1,5 +1,4 @@
 ﻿using Grate.GUI;
-using GorillaNetworking;
 
 namespace Grate.Modules.Misc
 {
@@ -38,6 +37,6 @@ namespace Grate.Modules.Misc
             return "Join Grate Code after Pressing 3 times";
         }
 
-        protected override void Cleanup() { }   
+        protected override void Cleanup() { }
     }
 }

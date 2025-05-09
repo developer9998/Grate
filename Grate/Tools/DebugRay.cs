@@ -1,6 +1,6 @@
-﻿using Grate.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Grate.Extensions;
 using UnityEngine;
 
 namespace Grate.Tools

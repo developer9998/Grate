@@ -1,8 +1,8 @@
-﻿using GorillaLocomotion;
+﻿using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Gestures;
 using Grate.GUI;
 using UnityEngine;
-using BepInEx.Configuration;
 
 namespace Grate.Modules.Movement
 {

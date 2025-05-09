@@ -1,14 +1,14 @@
-﻿using Grate.Extensions;
-using Grate.Tools;
-using GorillaLocomotion;
-using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Valve.VR;
 using System.Linq;
+using GorillaLocomotion;
+using Grate.Extensions;
+using Grate.Tools;
+using HarmonyLib;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Valve.VR;
 
 namespace Grate.Gestures
 {

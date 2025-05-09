@@ -1,16 +1,15 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Tools;
-using Grate.Extensions;
-using GorillaLocomotion;
-using BepInEx.Configuration;
 using Grate.Interaction;
-using System.Collections.Generic;
 using Grate.Networking;
+using Grate.Tools;
 using HarmonyLib;
-using emotitron.Compression;
+using UnityEngine;
 
 namespace Grate.Modules.Physics
 {
@@ -66,7 +65,7 @@ namespace Grate.Modules.Physics
             {
                 if (!bottlePrefab)
                     bottlePrefab = Plugin.assetBundle.LoadAsset<GameObject>("Potion Bottle");
-                float scale = (float)Math.Sqrt(GTPlayer.Instance.scale); 
+                float scale = (float)Math.Sqrt(GTPlayer.Instance.scale);
 
                 NetworkPropertyHandler.Instance?.ChangeProperty(playerSizeKey, scale);
                 sizeChanger = new GameObject("Grate Size Changer").AddComponent<SizeChanger>();
@@ -124,7 +123,7 @@ namespace Grate.Modules.Physics
             if (!shrink && !PositionValidator.Instance.isValidAndStable) return;
             float delta = shrink ? .99f : 1.01f;
             delta = Mathf.Clamp(sizeChanger.MinScale * delta, .03f, 20f);
-            if(delta < 1)
+            if (delta < 1)
                 potion.gulp.pitch = MathExtensions.Map(GTPlayer.Instance.scale, 0, 1, 1.5f, 1);
             else
                 potion.gulp.pitch = MathExtensions.Map(GTPlayer.Instance.scale, 1, 20, 1, .5f);
@@ -165,7 +164,8 @@ namespace Grate.Modules.Physics
                     rig.transform.localScale = Vector3.one;
                     rig.ScaleMultiplier = 1;
                 }
-                catch (Exception e) { Logging.Exception(e); };
+                catch (Exception e) { Logging.Exception(e); }
+                ;
             }
             foreach (SizeManager manager in FindObjectsOfType<SizeManager>())
             {
@@ -192,7 +192,8 @@ namespace Grate.Modules.Physics
                         player.SetScaleMultiplier(scale);
                     }
                 }
-                catch (Exception e) { Logging.Exception(e); };
+                catch (Exception e) { Logging.Exception(e); }
+                ;
             }
         }
 
@@ -337,13 +338,13 @@ namespace Grate.Modules.Physics
                 inRange = Vector3.Dot(delta, Vector3.up) > 0f && delta.magnitude < range * GTPlayer.Instance.scale;
                 if (isFlipped && inRange)
                 {
-                    if(!gulp.isPlaying)
+                    if (!gulp.isPlaying)
                         gulp.Play();
                     OnDrink?.Invoke(this);
                 }
                 else
                 {
-                    if(gulp.isPlaying)
+                    if (gulp.isPlaying)
                         gulp.Stop();
                 }
             }

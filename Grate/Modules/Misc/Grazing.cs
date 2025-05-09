@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Grate.Extensions;
+﻿using Grate.Extensions;
 using Grate.GUI;
 using Grate.Networking;
-using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -78,8 +74,8 @@ namespace Grate.Modules.Misc
                 vp.loopPointReached += delegate { vp.Play(); };
                 vp.Play();
                 vp.transform.SetParent(transform);
-                vp.transform.localPosition = new Vector3(0,1,0);
-                vp.transform.localRotation = Quaternion.Euler(Vector3.zero);    
+                vp.transform.localPosition = new Vector3(0, 1, 0);
+                vp.transform.localRotation = Quaternion.Euler(Vector3.zero);
             }
             void Update()
             {

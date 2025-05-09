@@ -1,14 +1,10 @@
-﻿using Grate.Extensions;
+﻿using System;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Modules.Movement;
-using GorillaLocomotion;
 using Grate.Networking;
 using Grate.Tools;
-using System;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using NetworkPlayer = NetPlayer;
 
 namespace Grate.Modules.Misc
@@ -39,7 +35,7 @@ namespace Grate.Modules.Misc
             if (!MenuController.Instance.Built) return;
             base.OnEnable();
             try
-            {                
+            {
                 GestureTracker.Instance.rightGrip.OnPressed += ToggleRatSwordOn;
                 GestureTracker.Instance.rightGrip.OnReleased += ToggleRatSwordOff;
             }
@@ -110,8 +106,8 @@ namespace Grate.Modules.Misc
                 sword = Instantiate(Sword);
 
                 sword.transform.SetParent(rightHand);
-                sword.transform.localPosition =  new Vector3(0.04f, 0.05f, - 0.02f);
-                sword.transform.localRotation = Quaternion.Euler(78.4409f,0,0);
+                sword.transform.localPosition = new Vector3(0.04f, 0.05f, -0.02f);
+                sword.transform.localRotation = Quaternion.Euler(78.4409f, 0, 0);
                 sword.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
                 networkedPlayer.OnGripPressed += OnGripPressed;

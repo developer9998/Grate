@@ -1,10 +1,9 @@
-﻿using GorillaLocomotion;
-using Grate.Tools;
-using UnityEngine;
-using System.Reflection;
-using Grate.Modules.Physics;
-using Grate.GUI;
+﻿using System.Reflection;
 using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.GUI;
+using Grate.Modules.Physics;
+using UnityEngine;
 
 namespace Grate.Modules.Movement
 {

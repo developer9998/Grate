@@ -3,19 +3,14 @@
 //////////// DON'T TOUCH IT UNLESS YOU'RE REWRITING THE WHOLE THING ////////////
 // -- luna
 
-using Fusion;
-using GorillaLocomotion;
+using System.Collections.Generic;
 using Grate.Extensions;
+using Grate.Gestures;
 using Grate.GUI;
 using Grate.Networking;
-using Grate.Tools;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Grate.Gestures;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR;
-using Photon.Pun;
 
 namespace Grate.Modules.Misc
 {
@@ -30,7 +25,7 @@ namespace Grate.Modules.Misc
         private AudioSource meowAudio;
         private InputTracker inputL = GestureTracker.Instance.GetInputTracker("grip", XRNode.LeftHand);
         private InputTracker inputR = GestureTracker.Instance.GetInputTracker("grip", XRNode.RightHand);
-        
+
         public override string GetDisplayName()
         {
             return "Meow";
@@ -45,14 +40,14 @@ namespace Grate.Modules.Misc
         {
             GripOff();
         }
-        
+
         protected override void OnDisable()
         {
             GripOff();
         }
 
         void Awake()
-        {   
+        {
             NetworkPropertyHandler.Instance.OnPlayerModStatusChanged += OnPlayerModStatusChanged;
             Patches.VRRigCachePatches.OnRigCached += OnRigCached;
         }
@@ -76,7 +71,7 @@ namespace Grate.Modules.Misc
             }
             catch
             {
-                
+
             }
         }
 
@@ -93,7 +88,7 @@ namespace Grate.Modules.Misc
             inputL.OnPressed -= OnLocalGrip;
             inputR.OnPressed -= OnLocalGrip;
         }
-        
+
         private void OnRigCached(NetPlayer player, VRRig rig)
         {
             rig?.gameObject?.GetComponent<TheMeower>()?.Obliterate();
@@ -130,7 +125,7 @@ namespace Grate.Modules.Misc
             meowParticles.Play();
             meowParticles.Emit(1);
         }
-        
+
         class TheMeower : MonoBehaviour
         {
             VRRig rigNet;
@@ -142,7 +137,7 @@ namespace Grate.Modules.Misc
             void Start()
             {
                 if (PhotonNetwork.LocalPlayer.UserId == "FBE3EE50747CB892")
-                { 
+                {
                     rigNet = GetComponent<VRRig>();
                     netPlayer = rigNet.GetComponent<NetworkedPlayer>();
                     meowboxNet = Instantiate(meowerPrefab, rigNet.gameObject.transform);

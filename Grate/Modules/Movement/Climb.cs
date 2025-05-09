@@ -1,12 +1,11 @@
-﻿using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
+using GorillaLocomotion;
+using GorillaLocomotion.Climbing;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using GorillaLocomotion.Climbing;
-using Sound = Grate.Tools.Sounds.Sound;
-using GorillaLocomotion;
+using Grate.Tools;
+using UnityEngine;
 
 namespace Grate.Modules.Movement
 {

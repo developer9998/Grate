@@ -1,7 +1,5 @@
-﻿using GorillaLocomotion;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
-using Grate.Extensions;
 
 namespace Grate.Patches
 {

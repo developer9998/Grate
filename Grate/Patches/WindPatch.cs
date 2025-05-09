@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GorillaLocomotion;
-using Grate.Modules.Misc;
+﻿using Grate.Modules.Misc;
 using HarmonyLib;
 using UnityEngine;
 

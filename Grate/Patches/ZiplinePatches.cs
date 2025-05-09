@@ -1,12 +1,10 @@
-﻿using HarmonyLib;
-using GorillaLocomotion;
-using System;
-using Grate.Tools;
-using Grate.Modules.Physics;
-using UnityEngine;
-using GorillaLocomotion.Gameplay;
+﻿using System;
 using GorillaLocomotion.Climbing;
+using GorillaLocomotion.Gameplay;
 using Grate.Modules.Movement;
+using Grate.Tools;
+using HarmonyLib;
+using UnityEngine;
 
 namespace Grate.Patches
 {
@@ -14,10 +12,10 @@ namespace Grate.Patches
     [HarmonyPatch("Update", MethodType.Normal)]
     public class ZiplineUpdatePatch
     {
-        private static void Postfix(GorillaZipline __instance, BezierSpline ___spline, float ___currentT, 
+        private static void Postfix(GorillaZipline __instance, BezierSpline ___spline, float ___currentT,
             GorillaHandClimber ___currentClimber)
         {
-            if(!Plugin.WaWa_graze_dot_cc) return;
+            if (!Plugin.WaWa_graze_dot_cc) return;
             try
             {
                 var rockets = Rockets.Instance;

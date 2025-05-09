@@ -1,12 +1,10 @@
-﻿using GorillaLocomotion;
-using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
 using Grate.Extensions;
 using Grate.GUI;
 using Grate.Networking;
+using Grate.Tools;
+using UnityEngine;
 using NetworkPlayer = NetPlayer;
-using Photon.Pun;
 
 namespace Grate.Modules.Misc
 {
@@ -25,7 +23,8 @@ namespace Grate.Modules.Misc
                 halo.transform.localPosition = new Vector3(0, .15f, 0);
                 halo.transform.localRotation = Quaternion.Euler(69, 0, 0);
                 lightBeam.transform.SetParent(rig.transform, false);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Logging.Exception(e);
             }

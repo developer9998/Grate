@@ -1,14 +1,14 @@
-﻿using GorillaLocomotion;
-using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using BepInEx.Configuration;
-using UnityEngine.XR;
-using System.Collections.Generic;
 using Grate.Patches;
+using Grate.Tools;
+using UnityEngine;
+using UnityEngine.XR;
 
 namespace Grate.Modules.Teleportation
 {

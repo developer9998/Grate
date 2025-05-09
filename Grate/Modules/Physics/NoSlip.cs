@@ -1,12 +1,9 @@
 ﻿using Grate.GUI;
 using Grate.Patches;
-using BepInEx.Configuration;
-using GorillaLocomotion;
-using UnityEngine;
 
 namespace Grate.Modules.Physics
 {
-    public class NoSlip: GrateModule
+    public class NoSlip : GrateModule
     {
         public static readonly string DisplayName = "No Slip";
         public static NoSlip Instance;
@@ -21,9 +18,9 @@ namespace Grate.Modules.Physics
                 SlipperyHands.Instance.enabled = false;
         }
 
-        protected override void Cleanup() 
+        protected override void Cleanup()
         {
-            string s = $"The functionality for this module is in {nameof(SlidePatch) }";
+            string s = $"The functionality for this module is in {nameof(SlidePatch)}";
         }
 
         public override string GetDisplayName()

@@ -1,8 +1,5 @@
-﻿using Grate.Extensions;
+﻿using GorillaLocomotion;
 using Grate.GUI;
-using GorillaLocomotion;
-using GorillaLocomotion.Swimming;
-using HarmonyLib;
 using UnityEngine;
 
 namespace Grate.Modules
@@ -23,7 +20,7 @@ namespace Grate.Modules
             waterVolume = Plugin.Water;
             waterVolume.transform.localScale = new Vector3(5f, 1000f, 5f);
             waterVolume.transform.SetParent(GTPlayer.Instance.transform, false);
-            waterVolume.transform.localPosition = new Vector3(0, 50,0);
+            waterVolume.transform.localPosition = new Vector3(0, 50, 0);
             waterVolume.SetActive(false);
             if (waterVolume.GetComponent<Renderer>())
             {

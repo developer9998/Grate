@@ -1,16 +1,15 @@
-﻿using Grate.Extensions;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using BepInEx.Configuration;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Networking;
 using Grate.Tools;
-using BepInEx.Configuration;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using NetworkPlayer = NetPlayer;
 using Player = GorillaLocomotion.GTPlayer;
-using UnityEngine.UIElements;
-using System.Collections;
 namespace Grate.Modules.Multiplayer
 {
     public class BoxingGlove : MonoBehaviour

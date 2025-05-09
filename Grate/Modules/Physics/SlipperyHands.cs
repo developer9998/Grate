@@ -1,6 +1,5 @@
 ﻿using Grate.GUI;
 using Grate.Patches;
-using BepInEx.Configuration;
 
 namespace Grate.Modules.Physics
 {

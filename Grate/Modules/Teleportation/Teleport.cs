@@ -1,14 +1,14 @@
-﻿using GorillaLocomotion;
+﻿using System;
+using System.Collections;
+using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Patches;
 using Grate.Tools;
-using System;
-using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using BepInEx.Configuration;
 
 namespace Grate.Modules
 {
@@ -100,7 +100,7 @@ namespace Grate.Modules
                 teleportMarker.localScale = Vector3.one * GTPlayer.Instance.scale * t;
                 if (t >= 1)
                 {
-                     TeleportPatch.TeleportPlayer(teleportMarker.position, teleportMarker.rotation.y);
+                    TeleportPatch.TeleportPlayer(teleportMarker.position, teleportMarker.rotation.y);
                     break;
                 }
                 yield return new WaitForFixedUpdate();

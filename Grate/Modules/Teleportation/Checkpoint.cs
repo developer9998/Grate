@@ -1,16 +1,16 @@
-﻿using GorillaLocomotion;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
+using Grate.Modules.Physics;
 using Grate.Patches;
 using Grate.Tools;
-using Grate.Modules.Physics;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using BepInEx.Configuration;
 
 namespace Grate.Modules.Teleportation
 {
@@ -170,7 +170,7 @@ namespace Grate.Modules.Teleportation
                 bananaLine?.gameObject.Obliterate();
                 checkpointMarker?.gameObject.Obliterate();
             }
-            
+
             if (GestureTracker.Instance)
             {
                 GestureTracker.Instance.leftTrigger.OnPressed -= Triggered;

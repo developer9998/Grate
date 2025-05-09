@@ -1,10 +1,10 @@
-﻿using Grate.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Tools;
-using GorillaLocomotion;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grate.Modules.Multiplayer
@@ -180,7 +180,7 @@ namespace Grate.Modules.Multiplayer
                 var handTransform = transform.Find(
                     string.Format(GestureTracker.palmPath, hand).Substring(1)
                 );
-                var rb = handTransform.gameObject.AddComponent<Rigidbody>();
+                var rb = handTransform.gameObject.GetOrAddComponent<Rigidbody>();
 
                 rb.isKinematic = true;
                 return handTransform;

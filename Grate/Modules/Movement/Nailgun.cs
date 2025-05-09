@@ -1,11 +1,11 @@
-﻿using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
+using BepInEx.Configuration;
+using GorillaLocomotion.Climbing;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using GorillaLocomotion.Climbing;
-using BepInEx.Configuration;
+using Grate.Tools;
+using UnityEngine;
 using UnityEngine.XR;
 
 namespace Grate.Modules.Movement

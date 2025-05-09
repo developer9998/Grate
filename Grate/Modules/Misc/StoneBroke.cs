@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Grate.Extensions;
+﻿using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Networking;
@@ -16,7 +13,7 @@ namespace Grate.Modules.Misc
         Awsomepnix LocalP;
         public static GameObject wawa;
 
-       public static InputTracker inputL, inputR;
+        public static InputTracker inputL, inputR;
         public override string GetDisplayName()
         {
             return "StoneBroke :3";

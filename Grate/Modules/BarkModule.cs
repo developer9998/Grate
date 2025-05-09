@@ -1,10 +1,10 @@
-﻿using Grate.Networking;
-using Grate.Tools;
-using BepInEx.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BepInEx.Configuration;
+using Grate.Networking;
+using Grate.Tools;
 using UnityEngine;
 
 namespace Grate.Modules
@@ -93,7 +93,8 @@ namespace Grate.Modules
                     return string.Compare(xValue, yValue);
                 });
                 return types;
-            } catch (ReflectionTypeLoadException ex)
+            }
+            catch (ReflectionTypeLoadException ex)
             {
                 Logging.Exception(ex);
                 Logging.Warning("Inner exceptions:");

@@ -1,13 +1,13 @@
 ﻿using System;
-using UnityEngine;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Tools;
-using Grate.Extensions;
-using GorillaLocomotion;
-using BepInEx.Configuration;
 using Grate.Interaction;
 using Grate.Patches;
+using Grate.Tools;
+using UnityEngine;
 
 namespace Grate.Modules.Teleportation
 {
@@ -114,7 +114,7 @@ namespace Grate.Modules.Teleportation
         Rigidbody rigidbody;
         AudioSource audioSource;
         LayerMask mask;
-        bool thrown = false,landed = true;
+        bool thrown = false, landed = true;
         Material monkeMat, trailMat;
         VRRig playerRig;
         ParticleSystem trail;

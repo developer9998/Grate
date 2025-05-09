@@ -1,13 +1,11 @@
+using System;
+using System.Collections.Generic;
+using GorillaLocomotion;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Tools;
-using GorillaLocomotion;
-using System;
-using System.Collections.Generic;
-using Fusion.LagCompensation;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Grate.Modules.Multiplayer
 {
@@ -15,7 +13,7 @@ namespace Grate.Modules.Multiplayer
     {
         public static readonly string DisplayName = "Grab";
         public static Grab Instance;
-        private List<GBMarker> markers = new List<GBMarker>(); 
+        private List<GBMarker> markers = new List<GBMarker>();
         public SphereCollider gbCollider;
         GBMarker grabber;
         void Awake() { Instance = this; }
@@ -59,7 +57,7 @@ namespace Grate.Modules.Multiplayer
                     rb.velocity = GTPlayer.Instance.bodyVelocityTracker.GetAverageVelocity(true, 0.15f, false) * 4.6f;
                     return;
                 }
-                
+
                 Vector3 direction = grabber.controllingHand.position - GTPlayer.Instance.bodyCollider.transform.position;
                 rb.AddForce(direction * 30, ForceMode.Impulse);
                 rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, .1f);
@@ -152,7 +150,7 @@ namespace Grate.Modules.Multiplayer
                 var handTransform = transform.Find(
                     string.Format(GestureTracker.palmPath, hand).Substring(1)
                 );
-                var rb = handTransform.gameObject.AddComponent<Rigidbody>();
+                var rb = handTransform.gameObject.GetOrAddComponent<Rigidbody>();
 
                 rb.isKinematic = true;
                 return handTransform;
@@ -184,7 +182,7 @@ namespace Grate.Modules.Multiplayer
                     var collider = Instance.gbCollider;
                     float checkRadius = 0.05f * GTPlayer.Instance.scale;
                     Collider[] hits = UnityEngine.Physics.OverlapSphere(hand.position, checkRadius);
-        
+
                     foreach (var hit in hits)
                     {
                         if (hit == collider)

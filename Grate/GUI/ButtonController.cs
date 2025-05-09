@@ -1,10 +1,10 @@
-﻿using Grate.Gestures;
-using UnityEngine;
-using System;
-using UnityEngine.UI;
+﻿using System;
 using System.Collections.Generic;
 using Grate;
+using Grate.Gestures;
 using Grate.Tools;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
@@ -66,7 +66,7 @@ public class ButtonController : MonoBehaviour
             observer.OnTriggerEntered += Press;
             observer.OnTriggerExited += Unpress;
             this.text = GetComponentInChildren<Text>();
-            if(text)
+            if (text)
                 this.text.fontSize = 26;
         }
         catch (Exception e) { Logging.Exception(e); Logging.Debug("Reached", progress); }
@@ -80,7 +80,7 @@ public class ButtonController : MonoBehaviour
                 Plugin.menuController.helpText.text = blockerText[blockers[0]];
                 return;
             }
-            if (!Interactable || 
+            if (!Interactable ||
                 (collider.gameObject != GestureTracker.Instance.leftPointerInteractor.gameObject &&
                 collider.gameObject != GestureTracker.Instance.rightPointerInteractor.gameObject)
             ) return;
@@ -125,7 +125,7 @@ public class ButtonController : MonoBehaviour
             {
                 NetworkSystem.Instance.ReturnToSinglePlayer();
             }
-                if (blockers.Contains(blocker)) return;
+            if (blockers.Contains(blocker)) return;
             Interactable = false;
             blockers.Add(blocker);
         }

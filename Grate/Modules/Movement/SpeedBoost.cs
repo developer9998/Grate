@@ -1,9 +1,8 @@
-﻿using Grate.GUI;
-using Grate.Tools;
+﻿using System;
 using BepInEx.Configuration;
-using GorillaGameModes;
 using GorillaLocomotion;
-using System;
+using Grate.GUI;
+using Grate.Tools;
 
 namespace Grate.Modules
 {
@@ -58,7 +57,7 @@ namespace Grate.Modules
         protected override void ReloadConfiguration()
         {
             scale = 1 + (Speed.Value / 20f);
-            if(this.enabled)
+            if (this.enabled)
                 GTPlayer.Instance.velocityLimit = baseVelocityLimit * scale;
         }
 

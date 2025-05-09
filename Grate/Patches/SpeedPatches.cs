@@ -1,10 +1,8 @@
-﻿using HarmonyLib;
-using Grate.Modules.Movement;
+﻿using System;
+using GorillaLocomotion;
 using Grate.Modules;
 using Grate.Tools;
-using System;
-using AA;
-using GorillaLocomotion;
+using HarmonyLib;
 using UnityEngine;
 
 namespace Grate.Patches

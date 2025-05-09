@@ -1,10 +1,9 @@
-﻿using Grate.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using Grate.Extensions;
 using Grate.Modules.Movement;
 using Grate.Modules.Multiplayer;
 using Grate.Tools;
-using Photon.Realtime;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Grate.Networking

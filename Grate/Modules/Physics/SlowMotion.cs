@@ -1,6 +1,5 @@
-﻿using Grate.GUI;
-using BepInEx.Configuration;
-using GorillaLocomotion;
+﻿using BepInEx.Configuration;
+using Grate.GUI;
 using UnityEngine;
 
 namespace Grate.Modules.Physics
@@ -26,7 +25,7 @@ namespace Grate.Modules.Physics
 
         protected override void ReloadConfiguration()
         {
-            if(enabled)
+            if (enabled)
                 Time.timeScale = TimeScale.Value / 10f;
         }
 

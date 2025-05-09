@@ -1,6 +1,6 @@
-﻿using Grate;
+﻿using System.Collections.Generic;
+using Grate;
 using Grate.Extensions;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColliderRenderer : MonoBehaviour

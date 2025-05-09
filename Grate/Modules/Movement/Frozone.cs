@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BepInEx.Configuration;
+﻿using System.Collections.Generic;
 using Grate.Gestures;
 using Grate.GUI;
 using Grate.Networking;
-using Grate.Tools;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.Windows;
 using UnityEngine.XR;
 
 namespace Grate.Modules.Movement
@@ -18,8 +12,8 @@ namespace Grate.Modules.Movement
         public static GameObject IcePrefab;
         public static Vector3 LhandOffset = Vector3.down * 0.05f;
         public static Vector3 RhandOffset = Vector3.down * 0.107f;
-        private  List<GameObject> prevRIce = new List<GameObject>();
-        private  List<GameObject> prevLIce = new List<GameObject>();
+        private List<GameObject> prevRIce = new List<GameObject>();
+        private List<GameObject> prevLIce = new List<GameObject>();
         Transform leftHandTransform => VRRig.LocalRig.leftHandTransform;
         Transform rightHandTransform => VRRig.LocalRig.rightHandTransform;
 
@@ -84,7 +78,7 @@ namespace Grate.Modules.Movement
         }
         private void OnDeactivate(InputTracker tracker)
         {
-            if (tracker.node == XRNode.LeftHand )
+            if (tracker.node == XRNode.LeftHand)
             {
                 leftPress = false;
             }

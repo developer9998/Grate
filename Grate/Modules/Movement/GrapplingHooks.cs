@@ -1,13 +1,12 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using BepInEx.Configuration;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Tools;
-using Grate.Extensions;
-using GorillaLocomotion;
-using BepInEx.Configuration;
 using Grate.Interaction;
+using Grate.Tools;
+using UnityEngine;
 
 namespace Grate.Modules.Movement
 {

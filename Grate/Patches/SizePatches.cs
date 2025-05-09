@@ -1,11 +1,9 @@
-﻿using HarmonyLib;
-using GorillaLocomotion;
-using System;
-using Grate.Tools;
-using Grate.Modules.Physics;
-using UnityEngine;
+﻿using System;
 using Grate.Extensions;
-using System.Runtime.CompilerServices;
+using Grate.Modules.Physics;
+using Grate.Tools;
+using HarmonyLib;
+using UnityEngine;
 
 namespace Grate.Patches
 {
@@ -18,7 +16,7 @@ namespace Grate.Patches
             if (!Plugin.WaWa_graze_dot_cc) return;
             try
             {
-            if (Potions.active && t == GorillaTagger.Instance.offlineVRRig.transform)
+                if (Potions.active && t == GorillaTagger.Instance.offlineVRRig.transform)
                 {
                     __result = Potions.sizeChanger;
                 }

@@ -1,13 +1,10 @@
-﻿using Grate.Extensions;
+﻿using System;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Modules.Movement;
-using GorillaLocomotion;
 using Grate.Networking;
 using Grate.Tools;
-using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using NetworkPlayer = NetPlayer;
 
 namespace Grate.Modules.Misc

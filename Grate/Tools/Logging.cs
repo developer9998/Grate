@@ -1,7 +1,7 @@
-﻿using Grate.GUI;
-using BepInEx.Logging;
-using System;
+﻿using System;
 using System.Diagnostics;
+using BepInEx.Logging;
+using Grate.GUI;
 
 namespace Grate.Tools
 {

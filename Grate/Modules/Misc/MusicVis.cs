@@ -1,12 +1,9 @@
-﻿using Fusion;
-using GorillaLocomotion;
+﻿using System;
+using System.Collections.Generic;
 using Grate.Extensions;
 using Grate.GUI;
 using Grate.Networking;
 using Grate.Tools;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Grate.Modules.Misc
@@ -35,7 +32,7 @@ namespace Grate.Modules.Misc
         }
 
         void Awake()
-        {   
+        {
             NetworkPropertyHandler.Instance.OnPlayerModStatusChanged += OnPlayerModStatusChanged;
             Patches.VRRigCachePatches.OnRigCached += OnRigCached;
         }

@@ -1,5 +1,5 @@
-﻿using Grate.Gestures;
-using GorillaLocomotion;
+﻿using GorillaLocomotion;
+using Grate.Gestures;
 using UnityEngine;
 
 
@@ -47,7 +47,7 @@ namespace Grate.Interaction
                 rb.isKinematic = true;
             }
             this.transform.SetParent(interactor.transform);
-            if(interactor.IsLeft)
+            if (interactor.IsLeft)
                 this.transform.localPosition = this.LocalPosition;
             else
                 this.transform.localPosition = this.MirroredLocalPosition;

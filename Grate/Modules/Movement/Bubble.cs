@@ -1,12 +1,12 @@
-﻿    using GorillaLocomotion;
-using Grate.Tools;
-using System;
-using UnityEngine;
+﻿using System;
+using BepInEx.Configuration;
+using GorillaLocomotion;
 using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using BepInEx.Configuration;
 using Grate.Networking;
+using Grate.Tools;
+using UnityEngine;
 using NetworkPlayer = NetPlayer;
 
 namespace Grate.Modules.Movement

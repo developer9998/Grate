@@ -1,14 +1,7 @@
-﻿using HarmonyLib;
-using GorillaLocomotion;
-using System;
-using Grate.Tools;
-using Grate.Modules.Physics;
-using UnityEngine;
-using Grate.Gestures;
-using Photon.Pun;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Grate.Extensions;
+using HarmonyLib;
 
 namespace Grate.Patches
 {

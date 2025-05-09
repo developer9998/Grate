@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using Player = GorillaLocomotion.GTPlayer;
-using Grate.GUI;
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 using Grate.Extensions;
 using Grate.Gestures;
+using Grate.GUI;
+using UnityEngine;
+using Player = GorillaLocomotion.GTPlayer;
 
 namespace Grate.Modules.Movement
 {

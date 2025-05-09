@@ -1,13 +1,10 @@
-﻿using Grate.Extensions;
+﻿using System;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Modules.Movement;
-using GorillaLocomotion;
 using Grate.Networking;
 using Grate.Tools;
-using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using NetworkPlayer = NetPlayer;
 
 namespace Grate.Modules.Misc
@@ -94,7 +91,7 @@ namespace Grate.Modules.Misc
                 cheese = Instantiate(DaCheese);
 
                 cheese.transform.SetParent(rightHand);
-                cheese.transform.localPosition = new Vector3(0.0992f, 0.06f ,0.02f);
+                cheese.transform.localPosition = new Vector3(0.0992f, 0.06f, 0.02f);
                 cheese.transform.localRotation = Quaternion.Euler(270, 163.12f, 0);
                 cheese.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 

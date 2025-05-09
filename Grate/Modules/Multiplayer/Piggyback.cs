@@ -1,14 +1,12 @@
-﻿using Grate.GUI;
-using Grate.Gestures;
-using Grate.Patches;
-using Grate.Modules.Physics;
+﻿using System;
 using GorillaLocomotion;
+using Grate.Gestures;
+using Grate.GUI;
+using Grate.Modules.Physics;
+using Grate.Networking;
+using Grate.Tools;
 using UnityEngine;
 using UnityEngine.XR;
-using Grate.Extensions;
-using Grate.Tools;
-using System;
-using Grate.Networking;
 
 namespace Grate.Modules.Multiplayer
 {

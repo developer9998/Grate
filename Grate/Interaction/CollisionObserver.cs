@@ -32,7 +32,7 @@ public class CollisionObserver : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)  
+    void OnTriggerEnter(Collider collider)
     {
         if (layerMask == (layerMask | (1 << collider.gameObject.layer)))
         {

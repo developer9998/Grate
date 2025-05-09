@@ -1,7 +1,7 @@
 ﻿using GorillaLocomotion;
 using Grate.GUI;
-using UnityEngine;
 using GT_CustomMapSupportRuntime;
+using UnityEngine;
 namespace Grate.Modules.Misc
 {
     public class ReturnToVS : GrateModule
@@ -34,7 +34,7 @@ namespace Grate.Modules.Misc
         }
         protected override void Cleanup()
         {
-            
+
         }
     }
 }

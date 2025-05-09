@@ -1,15 +1,11 @@
-﻿using Grate.Extensions;
+﻿using System;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.GUI;
-using Grate.Modules.Movement;
-using GorillaLocomotion;
 using Grate.Networking;
 using Grate.Tools;
-using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using NetworkPlayer = NetPlayer;
-using Grate.Modules.Multiplayer;
 
 namespace Grate.Modules.Misc
 {
@@ -39,7 +35,7 @@ namespace Grate.Modules.Misc
             if (!MenuController.Instance.Built) return;
             base.OnEnable();
             try
-            {            
+            {
                 GestureTracker.Instance.rightGrip.OnPressed += ToggleBagHammerOn;
                 GestureTracker.Instance.rightGrip.OnReleased += ToggleBagHammerOff;
             }
@@ -174,16 +170,16 @@ namespace Grate.Modules.Misc
             DoPunch(other.GetComponent<GorillaTagger>());
         }
         private void DoPunch(GorillaTagger glove)
-            {
-                if (Time.time - lastPunch < 1) return;
-                Vector3 force = glove.bodyCollider.attachedRigidbody.velocity;
-                force.Normalize();
-                force *= 10;
-                GorillaTagger.Instance.bodyCollider.attachedRigidbody.velocity += force;
-                lastPunch = Time.time;
-                GestureTracker.Instance.HapticPulse(false);
-                GestureTracker.Instance.HapticPulse(true);
+        {
+            if (Time.time - lastPunch < 1) return;
+            Vector3 force = glove.bodyCollider.attachedRigidbody.velocity;
+            force.Normalize();
+            force *= 10;
+            GorillaTagger.Instance.bodyCollider.attachedRigidbody.velocity += force;
+            lastPunch = Time.time;
+            GestureTracker.Instance.HapticPulse(false);
+            GestureTracker.Instance.HapticPulse(true);
 
-            }
+        }
     }
 }

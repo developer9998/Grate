@@ -1,13 +1,13 @@
-﻿using Grate.Extensions;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using GorillaLocomotion;
+using Grate.Extensions;
 using Grate.Gestures;
 using Grate.Patches;
 using Grate.Tools;
-using GorillaLocomotion;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 namespace Grate.Modules.Multiplayer
 {
     public class Firefly : MonoBehaviour

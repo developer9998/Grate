@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Grate.Modules.Multiplayer
+﻿namespace Grate.Modules.Multiplayer
 {
     class PateronSupporter : GrateModule
     {
